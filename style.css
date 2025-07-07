@@ -1,0 +1,238 @@
+/* Dark Mode Color Palette (CSS Variables) */
+:root {
+    --bg-primary: #1a1a1a; /* Dark background for the body */
+    --bg-secondary: #2c2c2c; /* Slightly lighter dark for main container */
+    --bg-tertiary: #3a3a3a; /* Even lighter dark for card-like elements */
+    --text-primary: #f0f0f0; /* Light text for general content */
+    --text-secondary: #cccccc; /* Slightly darker light text for labels */
+    --border-color: #555555; /* Darker border color */
+    --shadow-color: rgba(0, 0, 0, 0.4); /* Darker, less pronounced shadow */
+    --accent-color: #6a9cff; /* Blue accent, adjusted for dark mode */
+    --accent-hover: #4a7ddf; /* Darker blue for hover */
+    --accent-active: #3a6cd0; /* Even darker blue for active */
+}
+
+
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg-primary); /* Use dark background */
+    color: var(--text-primary); /* Use light text */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header */
+.page-header {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color); /* Darker border */
+}
+
+.page-header h1 {
+    color: var(--text-primary); /* Light header text */
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 900px;
+    width: 100%;
+    background-color: var(--bg-secondary); /* Slightly lighter dark background for main content */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--shadow-color); /* Darker, subtle shadow */
+}
+
+/* Crest Display Section */
+.crest-display {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--bg-tertiary); /* Darker background for this section */
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* More pronounced inner shadow for dark mode */
+}
+
+.crest-preview {
+    position: relative;
+    width: 256px; /* Standard size for crests */
+    height: 256px;
+    background-color: transparent; /* Changed to transparent, as bg.png handles the base color */
+    border: 2px solid var(--border-color); /* Darker border */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.crest-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.2s ease-in-out;
+}
+
+.crest-image.icon {
+    z-index: 3;
+}
+
+.crest-image.pattern {
+    z-index: 2;
+}
+
+.crest-image.background {
+    z-index: 1; /* This is the base layer, applied with filter */
+}
+
+
+/* Controls Section */
+.controls {
+    flex: 2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-secondary); /* Slightly darker light text for labels */
+    font-size: 0.95em;
+}
+
+.controls select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color); /* Darker border */
+    border-radius: 5px;
+    background-color: var(--bg-tertiary); /* Darker background for selects */
+    font-size: 1em;
+    color: var(--text-primary); /* Light text for select content */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Custom arrow for select - need to invert color for dark mode */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23cccccc%22%20d%3D%22M2%200L0%202h4zm0%205L0%203h4z%22%2F%3E%3C%2Fsvg%3E'); /* Light grey arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.controls select:focus {
+    border-color: var(--accent-color); /* Accent color on focus */
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(106, 156, 255, 0.25); /* Accent color shadow */
+}
+
+/* Style for select options (Important for dark mode to ensure readability) */
+.controls select option {
+    background-color: var(--bg-tertiary); /* Darker background for options */
+    color: var(--text-primary); /* Light text for options */
+}
+
+/* The inline styles for select options for colors are still valid,
+   but this provides a fallback or default for non-color options. */
+
+.info-group {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color); /* Darker dashed border */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-group p {
+    margin: 0;
+    font-size: 1.1em;
+    color: var(--text-secondary); /* Slightly darker light text */
+}
+
+.info-group #gameva {
+    font-weight: bold;
+    color: var(--accent-color); /* Accent color for game values */
+}
+
+/* Button Styling */
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--accent-color); /* Accent color for button */
+    color: white; /* White text for contrast */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    border: none;
+}
+
+.button:hover {
+    background-color: var(--accent-hover); /* Darker accent on hover */
+    transform: translateY(-2px);
+}
+
+.button:active {
+    background-color: var(--accent-active); /* Even darker accent on active */
+    transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .crest-display, .controls {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .crest-preview {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .page-header h1 {
+        font-size: 2em;
+    }
+
+    .crest-preview {
+        width: 180px;
+        height: 180px;
+    }
+}
